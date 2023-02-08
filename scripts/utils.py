@@ -38,7 +38,7 @@ def torch_to_matplotlib(x,device=device):
     if torch.mean(x)>10:
         x = (x.permute(0, 2, 3, 1)).clamp(0, 255).to(torch.uint8)
     else:
-        x = (x.permute(0, 2, 3, 1) * 255).clamp(0, 255).to(torch.uint8)
+        x = (x.permute(0, 2, 3, 1) * 127.5 + 128).clamp(0, 255).to(torch.uint8)
     if device=='cpu':
         return x[0]
     else:
